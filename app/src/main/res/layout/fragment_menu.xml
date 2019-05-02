@@ -1,0 +1,126 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_weight="0.5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="16dp">
+
+        <LinearLayout
+            android:id="@+id/llAbsen"
+            android:layout_weight="0.5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_weight="0.2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/singature_icon"/>
+
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.8"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Absen"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/colorBlack"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/llEndAbsen"
+            android:layout_weight="0.5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_weight="0.2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/end_signature_icon"/>
+
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.8"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Akhiri Absen"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/colorBlack"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="0.5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="16dp">
+
+        <LinearLayout
+            android:id="@+id/llBreak"
+            android:layout_weight="0.5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_weight="0.2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/breakout"/>
+
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.8"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Istirahat"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/colorBlack"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/llEndBreak"
+            android:layout_weight="0.5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_weight="0.2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/breakout_end_icon"/>
+
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.8"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Akhiri Istirahat"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/colorBlack"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="0.5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="16dp">
+
+
+    </LinearLayout>
+</LinearLayout>

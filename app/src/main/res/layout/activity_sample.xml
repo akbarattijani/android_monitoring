@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/toggle1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Signature 1"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/expand1"
+                app:el_duration="1000"
+                app:el_parallax="0.5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.github.gcacace.signaturepad.views.SignaturePad
+                    android:id="@+id/signature_pad1"
+                    android:background="@android:color/white"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="15dp"/>
+
+                <Button
+                    android:id="@+id/btn_save1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Save Signature 1"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:background="#000"/>
+            </net.cachapa.expandablelayout.ExpandableLayout>
+
+            <LinearLayout
+                android:id="@+id/toggle2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Signature 2"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/expand2"
+                app:el_duration="1000"
+                app:el_parallax="0.5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.github.gcacace.signaturepad.views.SignaturePad
+                    android:id="@+id/signature_pad2"
+                    android:background="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="450dp"
+                    android:layout_marginBottom="15dp"/>
+
+                <Button
+                    android:id="@+id/btn_save2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Save Signature 2"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:background="#000"/>
+            </net.cachapa.expandablelayout.ExpandableLayout>
+
+            <LinearLayout
+                android:id="@+id/toggle3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Signature 3"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/expand3"
+                app:el_duration="1000"
+                app:el_parallax="0.5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.github.gcacace.signaturepad.views.SignaturePad
+                    android:id="@+id/signature_pad3"
+                    android:background="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="450dp"
+                    android:layout_marginBottom="15dp"/>
+
+                <Button
+                    android:id="@+id/btn_save3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Save Signature 3"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:background="#000"/>
+            </net.cachapa.expandablelayout.ExpandableLayout>
+
+            <LinearLayout
+                android:id="@+id/toggle4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Signature 4"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/expand4"
+                app:el_duration="1000"
+                app:el_parallax="0.5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.github.gcacace.signaturepad.views.SignaturePad
+                    android:id="@+id/signature_pad4"
+                    android:background="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="450dp"
+                    android:layout_marginBottom="15dp"/>
+
+                <Button
+                    android:id="@+id/btn_save4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Save Signature 4"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:background="#000"/>
+            </net.cachapa.expandablelayout.ExpandableLayout>
+
+            <LinearLayout
+                android:id="@+id/toggle5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Signature 5"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/expand5"
+                app:el_duration="1000"
+                app:el_parallax="0.5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.github.gcacace.signaturepad.views.SignaturePad
+                    android:id="@+id/signature_pad5"
+                    android:background="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="450dp"
+                    android:layout_marginBottom="15dp"/>
+
+                <Button
+                    android:id="@+id/btn_save5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Save Signature 5"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:background="#000"/>
+            </net.cachapa.expandablelayout.ExpandableLayout>
+
+            <LinearLayout
+                android:id="@+id/toggle6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Signature 6"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/expand6"
+                app:el_duration="1000"
+                app:el_parallax="0.5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.github.gcacace.signaturepad.views.SignaturePad
+                    android:id="@+id/signature_pad6"
+                    android:background="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="450dp"
+                    android:layout_marginBottom="15dp"/>
+
+                <Button
+                    android:id="@+id/btn_save6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Save Signature 6"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:background="#000"/>
+            </net.cachapa.expandablelayout.ExpandableLayout>
+
+            <LinearLayout
+                android:id="@+id/toggle7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Signature 7"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/expand7"
+                app:el_duration="1000"
+                app:el_parallax="0.5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.github.gcacace.signaturepad.views.SignaturePad
+                    android:id="@+id/signature_pad7"
+                    android:background="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="450dp"
+                    android:layout_marginBottom="15dp"/>
+
+                <Button
+                    android:id="@+id/btn_save7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Save Signature 7"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:background="#000"/>
+            </net.cachapa.expandablelayout.ExpandableLayout>
+
+            <LinearLayout
+                android:id="@+id/toggle8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Signature 8"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/expand8"
+                app:el_duration="1000"
+                app:el_parallax="0.5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.github.gcacace.signaturepad.views.SignaturePad
+                    android:id="@+id/signature_pad8"
+                    android:background="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="450dp"
+                    android:layout_marginBottom="15dp"/>
+
+                <Button
+                    android:id="@+id/btn_save8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Save Signature 8"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:background="#000"/>
+            </net.cachapa.expandablelayout.ExpandableLayout>
+
+            <LinearLayout
+                android:id="@+id/toggle9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Signature 9"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/expand9"
+                app:el_duration="1000"
+                app:el_parallax="0.5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.github.gcacace.signaturepad.views.SignaturePad
+                    android:id="@+id/signature_pad9"
+                    android:background="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="450dp"
+                    android:layout_marginBottom="15dp"/>
+
+                <Button
+                    android:id="@+id/btn_save9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Save Signature 9"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:background="#000"/>
+            </net.cachapa.expandablelayout.ExpandableLayout>
+
+            <LinearLayout
+                android:id="@+id/toggle10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Signature 10"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/expand10"
+                app:el_duration="1000"
+                app:el_parallax="0.5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.github.gcacace.signaturepad.views.SignaturePad
+                    android:id="@+id/signature_pad10"
+                    android:background="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="450dp"
+                    android:layout_marginBottom="15dp"/>
+
+                <Button
+                    android:id="@+id/btn_save10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Save Signature 10"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:background="#000"/>
+            </net.cachapa.expandablelayout.ExpandableLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_dark">
+            <Button
+                android:id="@+id/btn_clear"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Clear"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:background="?attr/selectableItemBackground"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
