@@ -1,6 +1,8 @@
 package ip.signature.com.signatureapps.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +13,9 @@ import android.widget.Toast;
 import org.json.JSONObject;
 
 import ip.signature.com.signatureapps.R;
+import ip.signature.com.signatureapps.component.AlertDialogWithOneButton;
 import ip.signature.com.signatureapps.global.Global;
+import ip.signature.com.signatureapps.listener.AlertDialogListener;
 import ip.signature.com.signatureapps.listener.TransportListener;
 import ip.signature.com.signatureapps.model.MediaType;
 import ip.signature.com.signatureapps.transport.Body;
@@ -28,7 +32,7 @@ import ip.signature.com.signatureapps.activity.register.RegisterStep8;
 import ip.signature.com.signatureapps.activity.register.RegisterStep9;
 import ip.signature.com.signatureapps.activity.register.RegisterStepFinal;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener, TransportListener {
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener, TransportListener, AlertDialogListener.OneButton {
     private EditText etNip;
     private EditText etName;
     private EditText etPassword;
@@ -36,6 +40,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private final int RC_CHECK = 0;
     private final int RC_SUBMIT = 1;
+
+    private AlertDialogWithOneButton dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,21 +54,37 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         rlRegis = (RelativeLayout) findViewById(R.id.rlRegis);
 
         rlRegis.setOnClickListener(this);
+
+        dialog = new AlertDialogWithOneButton(this)
+                .setListener(this)
+                .setTextButton("OK");
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
     }
 
     @Override
     public void onClick(View v) {
         if (v == rlRegis) {
-            new Transporter()
-                    .id(RC_CHECK)
-                    .context(this)
-                    .listener(this)
-                    .url("https://monitoring-api.herokuapp.com")
-                    .route("/api/v1/user/check/" + etNip.getText().toString())
-                    .header("Authorization", "ApiAuth api_key=DMA128256512AI")
-                    .body(new BodyBuilder().setMediaType(MediaType.PLAIN.toString()))
-                    .gets()
-                    .execute();
+            if (etNip.getText().toString().trim().equals("")) {
+                dialog.setContent("Nomor NIP tidak boleh kosong").show();
+            } else if (etName.getText().toString().trim().equals("")) {
+                dialog.setContent("Nama tidak boleh kosong").show();
+            } else if (etPassword.getText().toString().trim().equals("")) {
+                dialog.setContent("Password tidak boleh kosong").show();
+            } else {
+                new Transporter()
+                        .id(RC_CHECK)
+                        .context(this)
+                        .listener(this)
+                        .url("https://monitoring-api.herokuapp.com")
+                        .route("/api/v1/user/check/" + etNip.getText().toString())
+                        .header("Authorization", "ApiAuth api_key=DMA128256512AI")
+                        .body(new BodyBuilder().setMediaType(MediaType.PLAIN.toString()))
+                        .gets()
+                        .execute();
+            }
         }
     }
 
@@ -178,5 +200,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onTransportFail(Object code, Object message, Object body, int id, Object... packet) {
         Toast.makeText(this, message.toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onClickButton() {
+        dialog.dismiss();
     }
 }

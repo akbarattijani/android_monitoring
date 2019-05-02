@@ -3,11 +3,12 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp"
+    android:padding="20dp"
     android:orientation="vertical"
     android:background="@color/colorAccent">
 
     <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_weight="0.9"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -16,49 +17,55 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="#000"
+            android:textColor="@color/colorWhite"
             android:text="NIP"/>
 
         <EditText
+            android:layout_marginTop="10dp"
             android:id="@+id/etNip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="14sp"
+            android:textSize="15sp"
+            android:background="@drawable/btn_logout_linear"
             android:layout_marginBottom="20dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="#000"
+            android:textColor="@color/colorWhite"
             android:text="Name"/>
 
         <EditText
+            android:layout_marginTop="10dp"
             android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="14sp"
+            android:textSize="15sp"
+            android:background="@drawable/btn_logout_linear"
             android:layout_marginBottom="20dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="#000"
+            android:textColor="@color/colorWhite"
             android:text="Password"/>
 
         <EditText
+            android:layout_marginTop="10dp"
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="14sp"
+            android:textSize="15sp"
+            android:background="@drawable/btn_logout_linear"
             android:layout_marginBottom="10dp"/>
     </LinearLayout>
 
