@@ -25,7 +25,7 @@ public class AttendanceService extends Service implements ScheduleListener {
         instance = this;
 
         scheduleUtil = new ScheduleUtil(this, 0).always(true);
-        scheduleUtil.run(TimeConverter.convertToMinute(1));
+        scheduleUtil.run(TimeConverter.convertToMinute(10));
     }
 
     @Override
