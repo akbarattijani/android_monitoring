@@ -31,5 +31,8 @@ public class ProgressDialog2 extends Dialog {
 		progress = (ProgressBar) findViewById(R.id.progressBar1);
 
 		isi.setText("Proses...");
+
+		setCanceledOnTouchOutside(false);
+		setCancelable(false);
 	}
 }

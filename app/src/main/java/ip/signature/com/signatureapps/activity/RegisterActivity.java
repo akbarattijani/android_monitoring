@@ -1,5 +1,6 @@
 package ip.signature.com.signatureapps.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -203,7 +204,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     @Override
-    public void onClickButton() {
+    public void onClickButton(Dialog dialog) {
         dialog.dismiss();
     }
 }

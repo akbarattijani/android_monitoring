@@ -86,9 +86,9 @@ public class AlertDialogWithTwoButton extends Dialog implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v == btnCancel) {
-            listener.onClickButtonLeft();
+            listener.onClickButtonLeft(this);
         } else if (v == btnOk) {
-            listener.onClickButtonRight();
+            listener.onClickButtonRight(this);
         }
     }
 }

@@ -73,7 +73,7 @@ public class AlertDialogWithOneButton extends Dialog implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v == btnOk) {
-            listener.onClickButton();
+            listener.onClickButton(this);
         }
     }
 }

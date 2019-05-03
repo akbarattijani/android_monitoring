@@ -1,5 +1,6 @@
 package ip.signature.com.signatureapps.activity;
 
+import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -87,12 +88,12 @@ public class EndAbsenActivity extends AppCompatActivity implements View.OnClickL
     }
 
     @Override
-    public void onClickButtonLeft() {
+    public void onClickButtonLeft(Dialog dialog) {
         dialog.dismiss();
     }
 
     @Override
-    public void onClickButtonRight() {
+    public void onClickButtonRight(Dialog dialog) {
         Toast.makeText(this, "Absensi berakhir", Toast.LENGTH_SHORT).show();
     }
 }

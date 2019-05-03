@@ -1,6 +1,9 @@
 package ip.signature.com.signatureapps.activity;
 
+import android.app.Dialog;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,25 +15,36 @@ import com.github.gcacace.signaturepad.views.SignaturePad;
 
 import org.json.JSONObject;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import ip.signature.com.signatureapps.R;
+import ip.signature.com.signatureapps.component.AlertDialogWithOneButton;
 import ip.signature.com.signatureapps.global.Global;
 import ip.signature.com.signatureapps.imageprocessing.Preprocessing.Grayscale;
 import ip.signature.com.signatureapps.imageprocessing.Preprocessing.Negasi;
 import ip.signature.com.signatureapps.imageprocessing.Preprocessing.Thresholding;
 import ip.signature.com.signatureapps.imageprocessing.Resize.Normalisasi;
 import ip.signature.com.signatureapps.imageprocessing.Segmentation.SignatureExtraction;
+import ip.signature.com.signatureapps.listener.AlertDialogListener;
 import ip.signature.com.signatureapps.listener.TransportListener;
+import ip.signature.com.signatureapps.model.MediaType;
 import ip.signature.com.signatureapps.transport.Body;
 import ip.signature.com.signatureapps.transport.Transporter;
+import ip.signature.com.signatureapps.transport.body.BodyBuilder;
 import ip.signature.com.signatureapps.util.ConvertArray;
+import ip.signature.com.signatureapps.util.GPSUtil;
 
-public class TestActivity extends AppCompatActivity implements View.OnClickListener, TransportListener {
+public class TestActivity extends AppCompatActivity implements View.OnClickListener, TransportListener, AlertDialogListener.OneButton {
     private SignaturePad signaturePad;
     private Button btnClear;
     private Button btnSave;
     private ImageView back;
+
+    private final int RC_CHECK = 0;
+    private final int RC_SIGNATURE_CHECK = 1;
+    private final int RC_ATTENDANCE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +78,17 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         btnClear.setOnClickListener(this);
         btnSave.setOnClickListener(this);
         back.setOnClickListener(this);
+
+        new Transporter()
+                .id(RC_CHECK)
+                .context(this)
+                .listener(this)
+                .url("https://monitoring-api.herokuapp.com")
+                .route("/api/v1/attendance/check/" + Global.id)
+                .header("Authorization", "ApiAuth api_key=DMA128256512AI")
+                .body(new BodyBuilder().setMediaType(MediaType.PLAIN.toString()))
+                .gets()
+                .execute();
     }
 
     private void createSignature() {
@@ -85,6 +110,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             body.put("biner", featureExtraction);
 
             new Transporter()
+                    .id(RC_SIGNATURE_CHECK)
                     .context(this)
                     .listener(this)
                     .url("https://monitoring-api.herokuapp.com")
@@ -103,7 +129,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         if (v == btnClear) {
             signaturePad.clear();
         } else if (v == btnSave) {
-            createSignature();
+            if (GPSUtil.forceGps(this)) {
+                createSignature();
+            }
         } else if (v == back) {
             onBackPressed();
         }
@@ -122,10 +150,49 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
             if (Integer.parseInt(json.get("code").toString()) == 200) {
                 String classification = json.getString("result");
-                if (classification.equals("true")) {
-                    Toast.makeText(this, "TANDA TANGAN COCOK", Toast.LENGTH_SHORT).show();
-                } else if (classification.equals("false")) {
-                    Toast.makeText(this, "TANDA TANGAN TIDAK COCOK", Toast.LENGTH_SHORT).show();
+
+                if (id == RC_CHECK) {
+                    if (classification.equals("false")) {
+                        AlertDialogWithOneButton dialog = new AlertDialogWithOneButton(this)
+                                .setListener(this)
+                                .setTextButton("OK")
+                                .setContent("Anda telah melakukan absen untuk hari ini");
+
+                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                        dialog.setCanceledOnTouchOutside(false);
+                        dialog.setCancelable(false);
+                        dialog.show();
+                    }
+                } else if (id == RC_SIGNATURE_CHECK) {
+                    if (classification.equals("true")) {
+                        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+                        JSONObject params = new JSONObject();
+                        params.put("id", Global.id);
+                        params.put("start_date", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(timestamp));
+                        params.put("longitude", GPSUtil.getLongitude());
+                        params.put("latitude", GPSUtil.getLatitude());
+
+                        new Transporter()
+                                .id(RC_ATTENDANCE)
+                                .context(this)
+                                .listener(this)
+                                .url("https://monitoring-api.herokuapp.com")
+                                .route("/api/v1/attendance/insert")
+                                .header("Authorization", "ApiAuth api_key=DMA128256512AI")
+                                .body(new Body().json(params))
+                                .post()
+                                .execute();
+                    } else if (classification.equals("false")) {
+                        Toast.makeText(this, "Tanda tangan tidak cocok. Silahkan ulangi.", Toast.LENGTH_SHORT).show();
+                    }
+                } else if (id == RC_ATTENDANCE) {
+                    if (classification.equals("true")) {
+                        Toast.makeText(this, "Absen Berhasil", Toast.LENGTH_SHORT).show();
+                        onBackPressed();
+                    } else if (classification.equals("false")) {
+                        Toast.makeText(this, "Absen Gagal. Silahkan Ulangi.", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         } catch (Exception e) {
@@ -136,5 +203,12 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onTransportFail(Object code, Object message, Object body, int id, Object... packet) {
         Toast.makeText(this, message.toString(), Toast.LENGTH_SHORT).show();
+        onBackPressed();
+    }
+
+    @Override
+    public void onClickButton(Dialog dialog) {
+        dialog.dismiss();
+        onBackPressed();
     }
 }
