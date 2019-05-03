@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import ip.signature.com.signatureapps.R;
-import ip.signature.com.signatureapps.activity.EndAbsenActivity;
-import ip.signature.com.signatureapps.activity.TestActivity;
+import ip.signature.com.signatureapps.activity.EndAttendanceActivity;
+import ip.signature.com.signatureapps.activity.AttendanceActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -102,10 +102,10 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         Intent intent = null;
         if (v == llAbsen) {
-            intent = new Intent(getActivity(), TestActivity.class);
+            intent = new Intent(getActivity(), AttendanceActivity.class);
             intent.putExtra("bundle", this.getArguments());
         } else if (v == llEndAbsen) {
-            intent = new Intent(getActivity(), EndAbsenActivity.class);
+            intent = new Intent(getActivity(), EndAttendanceActivity.class);
             intent.putExtra("bundle", this.getArguments());
         }
 

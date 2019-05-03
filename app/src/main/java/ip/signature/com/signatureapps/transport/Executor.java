@@ -6,7 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 
-import ip.signature.com.signatureapps.component.ProgressDialog2;
+import ip.signature.com.signatureapps.component.ProgressDialog;
 import ip.signature.com.signatureapps.listener.TransportListener;
 
 /**
@@ -15,7 +15,7 @@ import ip.signature.com.signatureapps.listener.TransportListener;
 
 public class Executor extends AsyncTask<Object, Object, String[]> {
     private Context context;
-    private ProgressDialog2 dialog;
+    private ProgressDialog dialog;
     private TransportListener listener;
     private int id = -1;
     private Transporter transporter;
@@ -39,7 +39,7 @@ public class Executor extends AsyncTask<Object, Object, String[]> {
     protected void onPreExecute() {
         if (!isSilent) {
             if (!((Activity) context).isFinishing()) {
-                dialog = new ProgressDialog2(context);
+                dialog = new ProgressDialog(context);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
                 dialog.setCanceledOnTouchOutside(false);

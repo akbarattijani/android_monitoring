@@ -22,7 +22,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.TestActivity" />
+        <activity android:name=".activity.AttendanceActivity" />
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,7 +43,12 @@
         <activity android:name=".activity.register.RegisterStep9" />
         <activity android:name=".activity.register.RegisterStepFinal" />
         <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.EndAbsenActivity"></activity>
+        <activity android:name=".activity.EndAttendanceActivity" />
+
+        <service
+            android:name=".service.AttendanceService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
