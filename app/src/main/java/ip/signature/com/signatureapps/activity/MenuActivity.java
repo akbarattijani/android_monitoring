@@ -1,5 +1,6 @@
 package ip.signature.com.signatureapps.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -71,6 +72,20 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onMenuClick(int position) {
+        if (position == 0) {
 
+        } else if (position == 1) {
+
+        } else if (position == 2) {
+
+        } else if (position == 3) {
+
+        } else if (position == 4) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+
+            this.finish();
+        }
     }
 }
