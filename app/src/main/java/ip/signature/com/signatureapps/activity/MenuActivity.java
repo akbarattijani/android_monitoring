@@ -10,10 +10,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import ip.signature.com.signatureapps.R;
 import ip.signature.com.signatureapps.adapter.NavigationMenuAdapter;
 import ip.signature.com.signatureapps.fragment.MenuFragment;
+import ip.signature.com.signatureapps.global.Global;
 
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener, NavigationMenuAdapter.OnMenuClickListener {
     private DrawerLayout myDrawerLayout;
@@ -22,6 +24,9 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     private RecyclerView rvMenu;
     private NavigationMenuAdapter menuAdapter;
     private MenuFragment menuFragment = new MenuFragment();
+
+    private TextView tvName;
+    private TextView tvNip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +38,14 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         myNavView = (NavigationView) findViewById(R.id.navigation_view);
         rvMenu = (RecyclerView) findViewById(R.id.rvMenu);
 
+        tvName = (TextView) findViewById(R.id.tvName);
+        tvNip = (TextView) findViewById(R.id.tvNip);
+
         Bundle bundle = getIntent().getBundleExtra("bundle");
         if (bundle != null) {
+            tvName.setText(Global.name);
+            tvNip.setText(Global.nip);
+
             myDrawerLayout.setScrimColor(Color.parseColor("#66ffffff"));
             flBurgeMenu.setOnClickListener(this);
 

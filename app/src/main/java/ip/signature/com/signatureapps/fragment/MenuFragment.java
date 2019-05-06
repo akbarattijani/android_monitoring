@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import ip.signature.com.signatureapps.R;
+import ip.signature.com.signatureapps.activity.BreakInActivity;
+import ip.signature.com.signatureapps.activity.BreakOutActivity;
 import ip.signature.com.signatureapps.activity.EndAttendanceActivity;
 import ip.signature.com.signatureapps.activity.AttendanceActivity;
 
@@ -106,6 +108,12 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
             intent.putExtra("bundle", this.getArguments());
         } else if (v == llEndAbsen) {
             intent = new Intent(getActivity(), EndAttendanceActivity.class);
+            intent.putExtra("bundle", this.getArguments());
+        } else if (v == llBreak) {
+            intent = new Intent(getActivity(), BreakOutActivity.class);
+            intent.putExtra("bundle", this.getArguments());
+        } else if (v == llEndBreak) {
+            intent = new Intent(getActivity(), BreakInActivity.class);
             intent.putExtra("bundle", this.getArguments());
         }
 

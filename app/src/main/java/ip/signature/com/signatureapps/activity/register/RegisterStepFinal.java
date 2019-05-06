@@ -154,7 +154,7 @@ public class RegisterStepFinal extends AppCompatActivity implements View.OnClick
 
         ArrayList<Bitmap> images = new ArrayList<>();
         images.add(result);
-        int[][] signatureNormalization = new Normalisasi().resize(images, 1, 50, 50).getBitmap(0, false);
+        int[][] signatureNormalization = new Normalisasi().resize(images, 1, 100, 100).getBitmap(0, false);
 
         return new ConvertArray().twoDimensionToOneDimension(signatureNormalization).asString();
     }

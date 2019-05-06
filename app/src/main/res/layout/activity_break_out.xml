@@ -30,7 +30,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Absen"
+                android:text="Istirahat"
                 android:textStyle="bold"
                 android:textColor="@color/colorWhite"
                 android:textSize="18sp"
@@ -39,23 +39,15 @@
     </LinearLayout>
 
     <TextView
+        android:layout_margin="16dp"
         android:gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Silahkan tanda tangan untuk melakukan absen"
+        android:text="Silahkan tekan tombol 'Istirahat' jika anda yakin akan melakukan istirahat."
         android:textColor="@color/colorWhite"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/signature_pad"
-        android:layout_marginBottom="25dp"/>
-
-    <com.github.gcacace.signaturepad.views.SignaturePad
-        android:layout_centerInParent="true"
-        android:id="@+id/signature_pad"
-        android:background="@android:color/white"
-        android:layout_width="350dp"
-        android:layout_height="350dp" />
+        android:layout_centerInParent="true"/>
 
     <LinearLayout
         android:layout_margin="16dp"
@@ -73,10 +65,10 @@
             android:background="@drawable/btn_logout_linear">
 
             <Button
-                android:id="@+id/btn_clear"
+                android:id="@+id/btn_batal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Ulangi"
+                android:text="Batal"
                 android:textAllCaps="false"
                 android:textColor="@color/colorBlack"
                 android:background="?attr/selectableItemBackground"/>
@@ -92,7 +84,7 @@
                 android:id="@+id/btn_save"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Absen"
+                android:text="Istirahat"
                 android:textAllCaps="false"
                 android:textColor="@color/colorBlack"
                 android:background="?attr/selectableItemBackground"/>

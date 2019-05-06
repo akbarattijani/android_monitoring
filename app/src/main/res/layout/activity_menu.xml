@@ -95,8 +95,7 @@
                     android:paddingBottom="28dp">
                     <FrameLayout
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="50dp">
+                        android:layout_height="50dp">
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -124,78 +123,76 @@
                             android:letterSpacing="0.01"
                             android:text="Ahmad Santosa"
                             android:textStyle="bold"
-                            android:id="@+id/tvHeaderNama"/>
+                            android:id="@+id/tvName"/>
                         <TextView
-                            android:visibility="gone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="14sp"
                             android:textColor="#ffffff"
                             android:letterSpacing="0.01"
-                            android:text="\ufeff@ahmadsantosa"
-                            android:id="@+id/tvHeaderPhone"/>
+                            android:id="@+id/tvNip"/>
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="@color/colorWhite"
                             android:layout_marginTop="6dp"
                             android:layout_marginBottom="6dp"/>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:orientation="horizontal">-->
 
-                            <ImageView
-                                android:layout_width="19dp"
-                                android:layout_height="19dp"/>
+                            <!--<ImageView-->
+                                <!--android:layout_width="19dp"-->
+                                <!--android:layout_height="19dp"/>-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="14sp"
-                                android:textColor="#ffffff"
-                                android:layout_marginLeft="10dp"
-                                android:letterSpacing="0.01"
-                                android:text="Dompet Kamu"
-                                />
-                        </LinearLayout>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="18sp"
-                            android:textColor="#ffffff"
-                            android:letterSpacing="0.01"
-                            android:gravity="end"
-                            android:text="Rp 0"
-                            android:textStyle="bold"
-                            android:id="@+id/tvHeaderSaldoPede"
-                            />
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:textSize="14sp"-->
+                                <!--android:textColor="#ffffff"-->
+                                <!--android:layout_marginLeft="10dp"-->
+                                <!--android:letterSpacing="0.01"-->
+                                <!--android:text="Dompet Kamu"-->
+                                <!--/>-->
+                        <!--</LinearLayout>-->
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:textSize="18sp"-->
+                            <!--android:textColor="#ffffff"-->
+                            <!--android:letterSpacing="0.01"-->
+                            <!--android:gravity="end"-->
+                            <!--android:text="Rp 0"-->
+                            <!--android:textStyle="bold"-->
+                            <!--android:id="@+id/tvHeaderSaldoPede"-->
+                            <!--/>-->
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:orientation="horizontal">-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="12sp"
-                                android:textColor="#ffffff"
-                                android:letterSpacing="0.01"
-                                android:text="Omzet Kamu :"
-                                />
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:textSize="12sp"-->
+                                <!--android:textColor="#ffffff"-->
+                                <!--android:letterSpacing="0.01"-->
+                                <!--android:text="Omzet Kamu :"-->
+                                <!--/>-->
 
-                            <TextView
-                                android:id="@+id/tvHeaderSaldo"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="12sp"
-                                android:textColor="#ffffff"
-                                android:layout_marginLeft="6dp"
-                                android:letterSpacing="0.01"
-                                android:text="Rp 0"
-                                />
-                        </LinearLayout>
+                            <!--<TextView-->
+                                <!--android:id="@+id/tvHeaderSaldo"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:textSize="12sp"-->
+                                <!--android:textColor="#ffffff"-->
+                                <!--android:layout_marginLeft="6dp"-->
+                                <!--android:letterSpacing="0.01"-->
+                                <!--android:text="Rp 0"-->
+                                <!--/>-->
+                        <!--</LinearLayout>-->
                     </LinearLayout>
                 </LinearLayout>
             </FrameLayout>

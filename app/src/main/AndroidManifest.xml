@@ -48,7 +48,10 @@
         <service
             android:name=".service.AttendanceService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".activity.BreakOutActivity" />
+        <activity android:name=".activity.BreakInActivity"></activity>
     </application>
 
 </manifest>

@@ -105,7 +105,7 @@ public class AttendanceActivity extends AppCompatActivity implements View.OnClic
 
             ArrayList<Bitmap> images = new ArrayList<>();
             images.add(result);
-            int[][] signatureNormalization = new Normalisasi().resize(images, 1, 50, 50).getBitmap(0, false);
+            int[][] signatureNormalization = new Normalisasi().resize(images, 1, 100, 100).getBitmap(0, false);
             String featureExtraction = new ConvertArray().twoDimensionToOneDimension(signatureNormalization).asString();
 
             System.out.println("NIP : " + Global.nip + "\tID : " + Global.id);
