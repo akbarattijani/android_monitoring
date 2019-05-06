@@ -188,6 +188,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     String name = object.getString("name");
                     String nip = object.getString("nip");
 
+                    Global.set(idUser, nip, name, step);
                     goToRegisterStep(step, idUser, name, nip);
                 } else {
                     Toast.makeText(this, "Authorization Not Valid", Toast.LENGTH_SHORT).show();

@@ -39,12 +39,17 @@ public class Executor extends AsyncTask<Object, Object, String[]> {
     protected void onPreExecute() {
         if (!isSilent) {
             if (!((Activity) context).isFinishing()) {
-                dialog = new ProgressDialog(context);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-                dialog.setCanceledOnTouchOutside(false);
-                dialog.setCancelable(false);
-                dialog.isi.setText("Proses...");
+                ((Activity) context).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        dialog = new ProgressDialog(context);
+                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                        dialog.show();
+                        dialog.setCanceledOnTouchOutside(false);
+                        dialog.setCancelable(false);
+                        dialog.isi.setText("Mengirim ke server...");
+                    }
+                });
             }
         }
 

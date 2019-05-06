@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import ip.signature.com.signatureapps.R;
 import ip.signature.com.signatureapps.component.AlertDialogWithOneButton;
+import ip.signature.com.signatureapps.component.ProgressDialog;
 import ip.signature.com.signatureapps.global.Global;
 import ip.signature.com.signatureapps.imageprocessing.Preprocessing.Grayscale;
 import ip.signature.com.signatureapps.imageprocessing.Preprocessing.Negasi;
@@ -96,46 +97,55 @@ public class AttendanceActivity extends AppCompatActivity implements View.OnClic
                 .execute();
     }
 
-    private void createSignature() {
-        try {
-            int[][] signatureExtraction = Grayscale.toGray(signaturePad.getSignatureBitmap(), false);
-            signatureExtraction = Thresholding.execute(signatureExtraction, signaturePad.getSignatureBitmap(), false);
-            signatureExtraction = Negasi.toBiner(signatureExtraction, false);
-            Bitmap result = SignatureExtraction.getExtraction(signatureExtraction, false);
-
-            ArrayList<Bitmap> images = new ArrayList<>();
-            images.add(result);
-            int[][] signatureNormalization = new Normalisasi().resize(images, 1, 100, 100).getBitmap(0, false);
-            String featureExtraction = new ConvertArray().twoDimensionToOneDimension(signatureNormalization).asString();
-
-            System.out.println("NIP : " + Global.nip + "\tID : " + Global.id);
-
-            JSONObject body = new JSONObject();
-            body.put("nip", Global.nip);
-            body.put("biner", featureExtraction);
-
-            new Transporter()
-                    .id(RC_SIGNATURE_CHECK)
-                    .context(this)
-                    .listener(this)
-                    .url("https://monitoring-api.herokuapp.com")
-                    .route("/api/v1/classification/search")
-                    .header("Authorization", "ApiAuth api_key=DMA128256512AI")
-                    .body(new Body().json(body))
-                    .post()
-                    .execute();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public void onClick(View v) {
         if (v == btnClear) {
             signaturePad.clear();
         } else if (v == btnSave) {
             if (GPSUtil.forceGps(this)) {
-                createSignature();
+                ProgressDialog dialog = new ProgressDialog(this);
+                dialog.show();
+                dialog.isi.setText("Mengolah tanda tangan...");
+
+                Thread thread = new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            int[][] signatureExtraction = Grayscale.toGray(signaturePad.getSignatureBitmap(), false);
+                            signatureExtraction = Thresholding.execute(signatureExtraction, signaturePad.getSignatureBitmap(), false);
+                            signatureExtraction = Negasi.toBiner(signatureExtraction, false);
+                            Bitmap result = SignatureExtraction.getExtraction(signatureExtraction, false);
+
+                            ArrayList<Bitmap> images = new ArrayList<>();
+                            images.add(result);
+                            int[][] signatureNormalization = new Normalisasi().resize(images, 1, 100, 100).getBitmap(0, false);
+                            String featureExtraction = new ConvertArray().twoDimensionToOneDimension(signatureNormalization).asString();
+
+                            System.out.println("NIP : " + Global.nip + "\tID : " + Global.id);
+
+                            JSONObject body = new JSONObject();
+                            body.put("nip", Global.nip);
+                            body.put("biner", featureExtraction);
+
+                            dialog.dismiss();
+
+                            new Transporter()
+                                    .id(RC_SIGNATURE_CHECK)
+                                    .context(AttendanceActivity.this)
+                                    .listener(AttendanceActivity.this)
+                                    .url("https://monitoring-api.herokuapp.com")
+                                    .route("/api/v1/classification/search")
+                                    .header("Authorization", "ApiAuth api_key=DMA128256512AI")
+                                    .body(new Body().json(body))
+                                    .post()
+                                    .execute();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+
+                thread.start();
             }
         } else if (v == back) {
             onBackPressed();

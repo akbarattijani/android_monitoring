@@ -2,6 +2,8 @@ package ip.signature.com.signatureapps.activity.register;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +17,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import ip.signature.com.signatureapps.R;
+import ip.signature.com.signatureapps.component.ProgressDialog;
 import ip.signature.com.signatureapps.imageprocessing.Preprocessing.Grayscale;
 import ip.signature.com.signatureapps.imageprocessing.Preprocessing.Negasi;
 import ip.signature.com.signatureapps.imageprocessing.Preprocessing.Thresholding;
@@ -74,26 +77,47 @@ public class RegisterStep6 extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v == rlNext) {
-            try {
-                int id = bundle.getInt("id", 0);
-                JSONObject object = new JSONObject();
-                object.put("id", id);
-                object.put("biner", createSignature(signaturePad));
+            ProgressDialog dialog = new ProgressDialog(RegisterStep6.this);
+            dialog.show();
+            dialog.isi.setText("Mengolah tanda tangan...");
 
-                new Transporter()
-                        .id(RC_SEND_SIGNATURE)
-                        .context(this)
-                        .listener(this)
-                        .url("https://monitoring-api.herokuapp.com")
-                        .route("/api/v1/sample/insert")
-                        .header("Authorization", "ApiAuth api_key=DMA128256512AI")
-                        .body(new Body().json(object))
-                        .post()
-                        .execute();
+            Thread thread = new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        int[][] signatureExtraction = Grayscale.toGray(signaturePad.getSignatureBitmap(), false);
+                        signatureExtraction = Thresholding.execute(signatureExtraction, signaturePad.getSignatureBitmap(), false);
+                        signatureExtraction = Negasi.toBiner(signatureExtraction, false);
+                        Bitmap result = SignatureExtraction.getExtraction(signatureExtraction, false);
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+                        ArrayList<Bitmap> images = new ArrayList<>();
+                        images.add(result);
+                        int[][] signatureNormalization = new Normalisasi().resize(images, 1, 100, 100).getBitmap(0, false);
+
+                        int id = bundle.getInt("id", 0);
+                        JSONObject object = new JSONObject();
+                        object.put("id", id);
+                        object.put("biner", new ConvertArray().twoDimensionToOneDimension(signatureNormalization).asString());
+
+                        dialog.dismiss();
+
+                        new Transporter()
+                                .id(RC_SEND_SIGNATURE)
+                                .context(RegisterStep6.this)
+                                .listener(RegisterStep6.this)
+                                .url("https://monitoring-api.herokuapp.com")
+                                .route("/api/v1/sample/insert")
+                                .header("Authorization", "ApiAuth api_key=DMA128256512AI")
+                                .body(new Body().json(object))
+                                .post()
+                                .execute();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+
+            thread.start();
         } else if (v == rlClear) {
             signaturePad.clear();
         }
@@ -143,18 +167,5 @@ public class RegisterStep6 extends AppCompatActivity implements View.OnClickList
     @Override
     public void onTransportFail(Object code, Object message, Object body, int id, Object... packet) {
         Toast.makeText(this, message.toString(), Toast.LENGTH_SHORT).show();
-    }
-
-    private String createSignature(SignaturePad signaturePad) {
-        int[][] signatureExtraction = Grayscale.toGray(signaturePad.getSignatureBitmap(), false);
-        signatureExtraction = Thresholding.execute(signatureExtraction, signaturePad.getSignatureBitmap(), false);
-        signatureExtraction = Negasi.toBiner(signatureExtraction, false);
-        Bitmap result = SignatureExtraction.getExtraction(signatureExtraction, false);
-
-        ArrayList<Bitmap> images = new ArrayList<>();
-        images.add(result);
-        int[][] signatureNormalization = new Normalisasi().resize(images, 1, 100, 100).getBitmap(0, false);
-
-        return new ConvertArray().twoDimensionToOneDimension(signatureNormalization).asString();
     }
 }
