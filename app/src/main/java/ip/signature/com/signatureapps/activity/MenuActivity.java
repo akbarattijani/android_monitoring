@@ -88,7 +88,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         } else if (position == 1) {
 
         } else if (position == 2) {
-
+            Intent intent = new Intent(this, AttendanceTrackActivity.class);
+            startActivity(intent);
         } else if (position == 3) {
 
         } else if (position == 4) {

@@ -81,6 +81,9 @@ public class AlertDialogWithTwoButton extends Dialog implements View.OnClickList
 
         btnCancel.setOnClickListener(this);
         btnOk.setOnClickListener(this);
+
+        setCanceledOnTouchOutside(false);
+        setCancelable(false);
     }
 
     @Override

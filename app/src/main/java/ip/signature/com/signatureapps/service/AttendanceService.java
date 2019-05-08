@@ -7,6 +7,9 @@ import android.os.IBinder;
 
 import org.json.JSONObject;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+
 import ip.signature.com.signatureapps.global.Global;
 import ip.signature.com.signatureapps.listener.ScheduleListener;
 import ip.signature.com.signatureapps.listener.TransportListener;
@@ -54,10 +57,13 @@ public class AttendanceService extends Service implements ScheduleListener {
     @Override
     public boolean onRun(int requestCode) {
         try {
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
             JSONObject object = new JSONObject();
             object.put("id", Global.id);
             object.put("longitude", GPSUtil.getLongitude());
             object.put("latitude", GPSUtil.getLatitude());
+            object.put("date", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(timestamp));
 
             new Transporter()
                     .context(this)

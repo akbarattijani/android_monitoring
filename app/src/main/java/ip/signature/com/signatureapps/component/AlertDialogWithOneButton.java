@@ -68,6 +68,9 @@ public class AlertDialogWithOneButton extends Dialog implements View.OnClickList
         btnOk = (Button) findViewById(R.id.btn_ok);
 
         btnOk.setOnClickListener(this);
+
+        setCanceledOnTouchOutside(false);
+        setCancelable(false);
     }
 
     @Override
