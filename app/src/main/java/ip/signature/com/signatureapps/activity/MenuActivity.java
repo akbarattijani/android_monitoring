@@ -84,7 +84,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onMenuClick(int position) {
         if (position == 0) {
-
+            Intent intent = new Intent(this, ProfilActivity.class);
+            startActivity(intent);
         } else if (position == 1) {
 
         } else if (position == 2) {

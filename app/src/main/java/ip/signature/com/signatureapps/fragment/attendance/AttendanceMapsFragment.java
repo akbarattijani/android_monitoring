@@ -1,6 +1,7 @@
 package ip.signature.com.signatureapps.fragment.attendance;
 
 import android.graphics.Color;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -29,6 +30,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import ip.signature.com.signatureapps.R;
+import ip.signature.com.signatureapps.util.GPSUtil;
 
 /**
  * A simple {@link Fragment} subclass.
