@@ -44,7 +44,9 @@ public class AttendanceService extends Service implements ScheduleListener {
             ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).createNotificationChannel(channel);
 
             Notification notification = new NotificationCompat.Builder(instance)
-                    .setCategory(Notification.CATEGORY_SERVICE).setSmallIcon(R.drawable.singature_icon).setPriority(PRIORITY_MIN).build();
+                    .setCategory(Notification.CATEGORY_SERVICE)
+                    .setSmallIcon(R.drawable.singature_icon)
+                    .setPriority(PRIORITY_MIN).build();
 
             startForeground(101, notification);
         }
