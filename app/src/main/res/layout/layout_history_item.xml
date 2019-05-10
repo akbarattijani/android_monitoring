@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/colorAccent">
+    android:background="@color/colorWhite">
 
     <LinearLayout
         android:layout_margin="10dp"
@@ -12,22 +12,30 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/attendance"/>
+
         <TextView
+            android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Absen                      : "
             android:textStyle="bold"
             android:textSize="14sp"
-            android:textColor="@color/colorWhite"/>
+            android:textColor="@color/colorBlack"/>
 
         <TextView
+            android:layout_gravity="center_vertical"
             android:id="@+id/tvAbsen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Belum Tersedia"
             android:textStyle="bold"
             android:textSize="14sp"
-            android:textColor="@color/colorWhite"/>
+            android:textColor="@color/colorBlack"/>
     </LinearLayout>
 
     <LinearLayout
@@ -36,22 +44,30 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/break_out"/>
+
         <TextView
+            android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Istirahat                  : "
             android:textStyle="bold"
             android:textSize="14sp"
-            android:textColor="@color/colorWhite"/>
+            android:textColor="@color/colorBlack"/>
 
         <TextView
+            android:layout_gravity="center_vertical"
             android:id="@+id/tvBreak"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Belum Tersedia"
             android:textStyle="bold"
             android:textSize="14sp"
-            android:textColor="@color/colorWhite"/>
+            android:textColor="@color/colorBlack"/>
     </LinearLayout>
 
     <LinearLayout
@@ -60,22 +76,30 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/break_in"/>
+
         <TextView
+            android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kembali kekantor : "
             android:textStyle="bold"
             android:textSize="14sp"
-            android:textColor="@color/colorWhite"/>
+            android:textColor="@color/colorBlack"/>
 
         <TextView
+            android:layout_gravity="center_vertical"
             android:id="@+id/tvBreakEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Belum Tersedia"
             android:textStyle="bold"
             android:textSize="14sp"
-            android:textColor="@color/colorWhite"/>
+            android:textColor="@color/colorBlack"/>
     </LinearLayout>
 
     <LinearLayout
@@ -84,26 +108,34 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/end_attendance"/>
+
         <TextView
+            android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pulang                     : "
             android:textStyle="bold"
             android:textSize="14sp"
-            android:textColor="@color/colorWhite"/>
+            android:textColor="@color/colorBlack"/>
 
         <TextView
+            android:layout_gravity="center_vertical"
             android:id="@+id/tvAbsenEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Belum Tersedia"
             android:textStyle="bold"
             android:textSize="14sp"
-            android:textColor="@color/colorWhite"/>
+            android:textColor="@color/colorBlack"/>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorWhite"/>
+        android:background="@color/colorAccent"/>
 </LinearLayout>
