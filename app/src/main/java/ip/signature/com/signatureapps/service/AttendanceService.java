@@ -1,15 +1,21 @@
 package ip.signature.com.signatureapps.service;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
 
 import org.json.JSONObject;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
+import ip.signature.com.signatureapps.R;
 import ip.signature.com.signatureapps.global.Global;
 import ip.signature.com.signatureapps.listener.ScheduleListener;
 import ip.signature.com.signatureapps.listener.TransportListener;
@@ -19,6 +25,8 @@ import ip.signature.com.signatureapps.util.GPSUtil;
 import ip.signature.com.signatureapps.util.ScheduleUtil;
 import ip.signature.com.signatureapps.util.TimeConverter;
 
+import static android.support.v4.app.NotificationCompat.PRIORITY_MIN;
+
 public class AttendanceService extends Service implements ScheduleListener {
     private static AttendanceService instance;
     private static ScheduleUtil scheduleUtil;
@@ -26,6 +34,20 @@ public class AttendanceService extends Service implements ScheduleListener {
 
     public void onCreate() {
         instance = this;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)  {
+
+
+            String CHANNEL_ID = "my_service";
+            String CHANNEL_NAME = "My Background Service";
+
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_NONE);
+            ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).createNotificationChannel(channel);
+
+            Notification notification = new NotificationCompat.Builder(instance)
+                    .setCategory(Notification.CATEGORY_SERVICE).setSmallIcon(R.drawable.singature_icon).setPriority(PRIORITY_MIN).build();
+
+            startForeground(101, notification);
+        }
 
         scheduleUtil = new ScheduleUtil(this, 0).always(true);
         scheduleUtil.run(TimeConverter.convertToMinute(10));
