@@ -1,5 +1,6 @@
 package ip.signature.com.signatureapps.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.NavigationView;
@@ -14,8 +15,10 @@ import android.widget.TextView;
 
 import ip.signature.com.signatureapps.R;
 import ip.signature.com.signatureapps.adapter.NavigationMenuAdapter;
+import ip.signature.com.signatureapps.component.AlertDialogWithTwoButton;
 import ip.signature.com.signatureapps.fragment.MenuFragment;
 import ip.signature.com.signatureapps.global.Global;
+import ip.signature.com.signatureapps.listener.AlertDialogListener;
 
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener, NavigationMenuAdapter.OnMenuClickListener {
     private DrawerLayout myDrawerLayout;
@@ -68,7 +71,26 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         if(myDrawerLayout.isDrawerOpen(myNavView)){
             myDrawerLayout.closeDrawers();
         } else {
-            super.onBackPressed();
+            AlertDialogWithTwoButton alertDialogWithTwoButton = new AlertDialogWithTwoButton(this)
+                    .setContent("Anda yakin ingin keluar akun..?")
+                    .setTextButtonRight("Keluar")
+                    .setListener(new AlertDialogListener.TwoButton() {
+                        @Override
+                        public void onClickButtonLeft(Dialog dialog) {
+                            dialog.dismiss();
+                        }
+
+                        @Override
+                        public void onClickButtonRight(Dialog dialog) {
+                            Intent intent = new Intent(MenuActivity.this, LoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+
+                            MenuActivity.this.finish();
+                        }
+                    });
+
+            alertDialogWithTwoButton.show();
         }
     }
 
@@ -87,7 +109,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(this, ProfilActivity.class);
             startActivity(intent);
         } else if (position == 1) {
-
+            Intent intent = new Intent(this, HistoryActivity.class);
+            startActivity(intent);
         } else if (position == 2) {
             Intent intent = new Intent(this, AttendanceTrackActivity.class);
             startActivity(intent);
