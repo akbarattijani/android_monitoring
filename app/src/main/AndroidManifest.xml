@@ -31,7 +31,9 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".activity.AttendanceActivity" />
-        <activity android:name=".activity.LoginActivity">
+        <activity
+            android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -98,7 +100,9 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".activity.HistoryActivity"></activity>
+        <activity
+            android:name=".activity.HistoryActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
