@@ -35,8 +35,6 @@ public class AttendanceService extends Service implements ScheduleListener {
     public void onCreate() {
         instance = this;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)  {
-
-
             String CHANNEL_ID = "my_service";
             String CHANNEL_NAME = "My Background Service";
 
