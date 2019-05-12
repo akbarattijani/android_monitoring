@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorAccent">
+    android:background="#fff">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
+        android:background="#fff"
         app:layout_scrollFlags="scroll|enterAlways|snap"
         android:id="@+id/toolbar"
         android:fitsSystemWindows="true"
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:text="Riwayat"
                 android:textStyle="bold"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/chocolate"
                 android:textSize="18sp"
                 android:layout_marginLeft="30dp"/>
         </android.support.v7.widget.Toolbar>
@@ -43,7 +43,8 @@
         android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/background">
     </LinearLayout>
 
 </RelativeLayout>

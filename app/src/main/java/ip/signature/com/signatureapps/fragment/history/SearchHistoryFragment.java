@@ -34,8 +34,8 @@ import ip.signature.com.signatureapps.transport.body.BodyBuilder;
 public class SearchHistoryFragment extends Fragment implements View.OnClickListener, TransportListener {
     private EditText etDate;
     private EditText etDateEnd;
-    private Button btnPilih;
-    private Button btnPilihEnd;
+    private android.widget.LinearLayout llPilih;
+    private android.widget.LinearLayout llPilihEnd;
     private RelativeLayout rlCari;
 
     public SearchHistoryFragment() {
@@ -53,12 +53,12 @@ public class SearchHistoryFragment extends Fragment implements View.OnClickListe
 
         etDate = (EditText) view.findViewById(R.id.etDate);
         etDateEnd = (EditText) view.findViewById(R.id.etDateEnd);
-        btnPilih = (Button) view.findViewById(R.id.btnPilih);
-        btnPilihEnd = (Button) view.findViewById(R.id.btnPilihEnd);
+        llPilih = (android.widget.LinearLayout) view.findViewById(R.id.llPilih);
+        llPilihEnd = (android.widget.LinearLayout) view.findViewById(R.id.llPilihEnd);
         rlCari = (RelativeLayout) view.findViewById(R.id.rlCari);
 
-        btnPilih.setOnClickListener(this);
-        btnPilihEnd.setOnClickListener(this);
+        llPilih.setOnClickListener(this);
+        llPilihEnd.setOnClickListener(this);
         rlCari.setOnClickListener(this);
 
         return view;
@@ -84,9 +84,9 @@ public class SearchHistoryFragment extends Fragment implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if (v == btnPilih) {
+        if (v == llPilih) {
             showDateDialog(etDate);
-        } else if (v == btnPilihEnd) {
+        } else if (v == llPilihEnd) {
             showDateDialog(etDateEnd);
         } else if (v == rlCari) {
             new Transporter()

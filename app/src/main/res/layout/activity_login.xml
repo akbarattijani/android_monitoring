@@ -6,77 +6,110 @@
     android:layout_height="match_parent"
     android:padding="15dp"
     android:orientation="vertical"
-    android:background="@color/colorPrimaryDark">
+    android:background="@drawable/background">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
+        android:textColor="@color/chocolate"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="#000"
-        android:text="NIP"/>
-
-    <EditText
-        android:id="@+id/etNip"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:layout_marginBottom="20dp"/>
+        android:text="LOGIN !"
+        android:layout_marginTop="40dp"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:textColor="#000"
-        android:text="Password"/>
-
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:inputType="textPassword"
-        android:layout_marginBottom="10dp"/>
+        android:textColor="@color/chocolate"
+        android:text="Halo, silahkan lakukan login menggunakan akun yang sebelumnya telah anda daftarkan"/>
 
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@drawable/btn_border_with_corners">
 
-        <LinearLayout
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
+        <ImageView
+            android:layout_margin="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/user_icon"/>
+
+        <EditText
+            android:inputType="number"
+            android:layout_marginLeft="15dp"
+            android:hint="Masukan nomor NIP"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/etNip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/holo_blue_dark">
-            <Button
-                android:id="@+id/btn_register"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Register"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/holo_blue_dark">
-            <Button
-                android:id="@+id/btn_login"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Login"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"/>
-        </LinearLayout>
-
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:background="@null"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/btn_border_with_corners">
+
+        <ImageView
+            android:layout_margin="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/password_icon"/>
+
+        <EditText
+            android:layout_marginLeft="15dp"
+            android:hint="Masukan kata sandi"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:background="@null"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_login"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_blue_linear"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_register"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_white_middle_linear"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Daftar Akun"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:textColor="@color/blueDark"/>
+    </LinearLayout>
 </LinearLayout>

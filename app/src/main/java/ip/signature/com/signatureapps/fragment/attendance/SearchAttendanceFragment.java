@@ -48,7 +48,7 @@ public class SearchAttendanceFragment extends Fragment implements View.OnClickLi
     private String mParam2;
 
     private EditText etDate;
-    private Button btnPilih;
+    private android.widget.LinearLayout llPilih;
     private RelativeLayout rlCari;
 
     public SearchAttendanceFragment() {
@@ -87,10 +87,10 @@ public class SearchAttendanceFragment extends Fragment implements View.OnClickLi
         View view = inflater.inflate(R.layout.fragment_search_attendance, container, false);
 
         etDate = (EditText) view.findViewById(R.id.etDate);
-        btnPilih = (Button) view.findViewById(R.id.btnPilih);
+        llPilih = (android.widget.LinearLayout) view.findViewById(R.id.llPilih);
         rlCari = (RelativeLayout) view.findViewById(R.id.rlCari);
 
-        btnPilih.setOnClickListener(this);
+        llPilih.setOnClickListener(this);
         rlCari.setOnClickListener(this);
 
         return view;
@@ -98,7 +98,7 @@ public class SearchAttendanceFragment extends Fragment implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        if (v == btnPilih) {
+        if (v == llPilih) {
             showDateDialog();
         } else if (v == rlCari) {
             try {

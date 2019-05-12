@@ -14,7 +14,7 @@
     </padding>
 
     <stroke
-        android:width="7dp"
-        android:color="@color/colorAccent" />
+        android:width="5dp"
+        android:color="@color/blueDark" />
 
 </shape>

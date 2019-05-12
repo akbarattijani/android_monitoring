@@ -8,7 +8,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -36,8 +35,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private EditText etNip;
     private EditText etPassword;
-    private Button btnLogin;
-    private Button btnRegister;
+    private android.widget.LinearLayout btnLogin;
+    private android.widget.LinearLayout btnRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +45,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         etNip = (EditText) findViewById(R.id.etNip);
         etPassword = (EditText) findViewById(R.id.etPassword);
-        btnLogin = (Button) findViewById(R.id.btn_login);
-        btnRegister = (Button) findViewById(R.id.btn_register);
+        btnLogin = (android.widget.LinearLayout) findViewById(R.id.btn_login);
+        btnRegister = (android.widget.LinearLayout) findViewById(R.id.btn_register);
 
         btnLogin.setOnClickListener(this);
         btnRegister.setOnClickListener(this);

@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/border_dialog"
+    android:background="@drawable/btn_logout_linear"
     android:padding="25dp">
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/chocolate"
         android:textStyle="bold"/>
 
     <LinearLayout
@@ -28,7 +28,7 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_dialog_linear">
+            android:background="@drawable/btn_logout_linear">
 
             <Button
                 android:id="@+id/btn_batal"
@@ -45,7 +45,7 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_dialog_linear">
+            android:background="@drawable/btn_logout_linear">
             <Button
                 android:id="@+id/btn_ok"
                 android:layout_width="match_parent"

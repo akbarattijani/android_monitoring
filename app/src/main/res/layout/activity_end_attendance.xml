@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorAccent">
+    android:background="#fff">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
+        android:background="#fff"
         app:layout_scrollFlags="scroll|enterAlways|snap"
         android:id="@+id/toolbar"
         android:fitsSystemWindows="true"
@@ -32,64 +32,69 @@
                 android:layout_height="wrap_content"
                 android:text="Akhiri Absen"
                 android:textStyle="bold"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/chocolate"
                 android:textSize="18sp"
                 android:layout_marginLeft="30dp"/>
         </android.support.v7.widget.Toolbar>
     </LinearLayout>
 
-    <TextView
-        android:layout_margin="16dp"
-        android:gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Silahkan tekan tombol 'Akhiri Absen' jika anda yakin sudah selesai dengan jam kerja anda. Tekan tombol 'Batal' jika tidak ingin mengakhiri absen."
-        android:textColor="@color/colorWhite"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"/>
-
-    <LinearLayout
-        android:layout_margin="16dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="10dp"
+    <RelativeLayout
+        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:background="@drawable/background">
+
+        <TextView
+            android:layout_margin="16dp"
+            android:gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Silahkan tekan tombol 'Akhiri Absen' jika anda yakin sudah selesai dengan jam kerja anda. Tekan tombol 'Batal' jika tidak ingin mengakhiri absen."
+            android:textColor="@color/chocolate"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"/>
 
         <LinearLayout
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
+            android:layout_margin="16dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_logout_linear">
+            android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btn_batal"
+            <LinearLayout
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Batal"
-                android:textAllCaps="false"
-                android:textColor="@color/colorBlack"
-                android:background="?attr/selectableItemBackground"/>
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_logout_linear">
 
-        <LinearLayout
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_logout_linear">
-            <Button
-                android:id="@+id/btn_save"
+                <Button
+                    android:id="@+id/btn_batal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Batal"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorBlack"
+                    android:background="?attr/selectableItemBackground"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Akhiri Absen"
-                android:textAllCaps="false"
-                android:textColor="@color/colorBlack"
-                android:background="?attr/selectableItemBackground"/>
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_logout_linear">
+                <Button
+                    android:id="@+id/btn_save"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Akhiri Absen"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorBlack"
+                    android:background="?attr/selectableItemBackground"/>
+            </LinearLayout>
         </LinearLayout>
-
-    </LinearLayout>
-
+    </RelativeLayout>
 </RelativeLayout>

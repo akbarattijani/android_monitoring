@@ -37,7 +37,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText etNip;
     private EditText etName;
     private EditText etPassword;
-    private RelativeLayout rlRegis;
+    private EditText etConfirmPassword;
+    private android.widget.LinearLayout btnRegister;
 
     private final int RC_CHECK = 0;
     private final int RC_SUBMIT = 1;
@@ -52,9 +53,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         etNip = (EditText) findViewById(R.id.etNip);
         etName = (EditText) findViewById(R.id.etName);
         etPassword = (EditText) findViewById(R.id.etPassword);
-        rlRegis = (RelativeLayout) findViewById(R.id.rlRegis);
+        etConfirmPassword = (EditText) findViewById(R.id.etConfirmPassword);
+        btnRegister = (android.widget.LinearLayout) findViewById(R.id.btn_register);
 
-        rlRegis.setOnClickListener(this);
+        btnRegister.setOnClickListener(this);
 
         dialog = new AlertDialogWithOneButton(this)
                 .setListener(this)
@@ -67,14 +69,16 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        if (v == rlRegis) {
+        if (v == btnRegister) {
             if (etNip.getText().toString().trim().equals("")) {
                 dialog.setContent("Nomor NIP tidak boleh kosong").show();
             } else if (etName.getText().toString().trim().equals("")) {
                 dialog.setContent("Nama tidak boleh kosong").show();
             } else if (etPassword.getText().toString().trim().equals("")) {
                 dialog.setContent("Password tidak boleh kosong").show();
-            } else {
+            } else if (!etPassword.getText().toString().equals(etConfirmPassword.getText().toString())) {
+                dialog.setContent("Password dan Konfirmasi Password tidak sesuai").show();
+            }else {
                 new Transporter()
                         .id(RC_CHECK)
                         .context(this)

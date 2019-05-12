@@ -5,4 +5,9 @@
     <color name="colorAccent">#C4005E</color>
     <color name="colorWhite">#FFF</color>
     <color name="colorBlack">#343A44</color>
+
+    <color name="blueDark">#5d74fc</color>
+    <color name="blueMiddle">#7fd4fc</color>
+    <color name="whiteMiddle">#e6e6e6</color>
+    <color name="chocolate">#544040</color>
 </resources>

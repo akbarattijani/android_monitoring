@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center" 
-    android:background="#fff"
+    android:background="@drawable/btn_logout_linear"
     android:padding="20dp">
 
     <ProgressBar
@@ -17,7 +17,7 @@
 	    android:layout_height="wrap_content"
 	    android:layout_gravity="center"
 	    android:text="Mengakses "
-	    android:textColor="#000"
+	    android:textColor="@color/chocolate"
 	    android:textSize="14dp"
 	    android:gravity="center"
 	    android:layout_marginLeft="10dp"/>

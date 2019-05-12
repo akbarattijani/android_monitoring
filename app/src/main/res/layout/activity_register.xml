@@ -5,84 +5,141 @@
     android:layout_height="match_parent"
     android:padding="20dp"
     android:orientation="vertical"
-    android:background="@color/colorAccent">
+    android:background="@drawable/background">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/chocolate"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="DAFTAR AKUN !"
+        android:layout_marginTop="40dp"/>
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/chocolate"
+        android:text="Daftar sekarang"/>
 
     <LinearLayout
         android:layout_marginTop="20dp"
-        android:layout_weight="0.9"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/btn_border_with_corners">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorWhite"
-            android:text="NIP"/>
+        <ImageView
+            android:layout_margin="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/user_icon"/>
 
         <EditText
-            android:layout_marginTop="10dp"
+            android:inputType="number"
+            android:layout_marginLeft="15dp"
+            android:hint="Masukan nomor NIP"
+            android:layout_gravity="center_vertical"
             android:id="@+id/etNip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="15sp"
-            android:background="@drawable/btn_logout_linear"
-            android:layout_marginBottom="20dp"/>
+            android:textSize="14sp"
+            android:background="@null"/>
+    </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorWhite"
-            android:text="Name"/>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/btn_border_with_corners">
+
+        <ImageView
+            android:layout_margin="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/email_icon"/>
 
         <EditText
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:hint="Masukan nama"
+            android:layout_gravity="center_vertical"
             android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="15sp"
-            android:background="@drawable/btn_logout_linear"
-            android:layout_marginBottom="20dp"/>
+            android:textSize="14sp"
+            android:background="@null"/>
+    </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorWhite"
-            android:text="Password"/>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/btn_border_with_corners">
+
+        <ImageView
+            android:layout_margin="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/password_icon"/>
 
         <EditText
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:hint="Masukan kata sandi"
+            android:layout_gravity="center_vertical"
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="15sp"
-            android:background="@drawable/btn_logout_linear"
-            android:layout_marginBottom="10dp"/>
+            android:textSize="14sp"
+            android:background="@null"/>
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_weight="0.1"
+    <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/btn_logout_linear"
-        android:id="@+id/rlRegis">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/btn_border_with_corners">
+
+        <ImageView
+            android:layout_margin="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/confirm_password_icon"/>
+
+        <EditText
+            android:layout_marginLeft="15dp"
+            android:hint="Masukan konfirmasi kata sandi"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/etConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:background="@null"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_register"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_blue_linear"
+        android:orientation="vertical">
 
         <TextView
-            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register"
-            android:textColor="@color/colorBlack"
-            android:textStyle="bold"
-            android:textSize="20sp"/>
-    </RelativeLayout>
+            android:layout_margin="15dp"
+            android:text="Daftar"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"/>
+    </LinearLayout>
 </LinearLayout>

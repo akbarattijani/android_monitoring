@@ -3,26 +3,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorAccent">
+    android:background="@drawable/background">
 
     <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/info"
         android:gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Silahkan tanda tangan untuk melanjutkan pendaftaran (tidak boleh dikosongkan)"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/chocolate"
         android:textSize="16sp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/signature_pad"
         android:layout_marginBottom="25dp"/>
 
-    <com.github.gcacace.signaturepad.views.SignaturePad
-        android:layout_centerInParent="true"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
-        android:id="@+id/signature_pad"
-        android:background="#fff"/>
+    <LinearLayout
+        android:layout_below="@+id/info"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/llSignaturePad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/btn_border_with_corners">
+
+        <com.github.gcacace.signaturepad.views.SignaturePad
+            android:id="@+id/signature_pad"
+            android:background="@android:color/white"
+            android:layout_width="350dp"
+            android:layout_height="350dp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_margin="16dp"
