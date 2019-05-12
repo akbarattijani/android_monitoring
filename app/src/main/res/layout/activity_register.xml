@@ -46,7 +46,8 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="14sp"
-            android:background="@null"/>
+            android:background="@null"
+            android:imeOptions="actionNext"/>
     </LinearLayout>
 
     <LinearLayout
@@ -71,7 +72,9 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="14sp"
-            android:background="@null"/>
+            android:background="@null"
+            android:inputType="text"
+            android:imeOptions="actionNext"/>
     </LinearLayout>
 
     <LinearLayout
@@ -96,7 +99,9 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="14sp"
-            android:background="@null"/>
+            android:background="@null"
+            android:inputType="textPassword"
+            android:imeOptions="actionNext"/>
     </LinearLayout>
 
     <LinearLayout
@@ -121,7 +126,9 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="14sp"
-            android:background="@null"/>
+            android:background="@null"
+            android:inputType="textPassword"
+            android:imeOptions="actionDone"/>
     </LinearLayout>
 
     <LinearLayout
