@@ -1,6 +1,7 @@
 package ip.signature.com.signatureapps.activity;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -14,7 +15,9 @@ import android.widget.Toast;
 import org.json.JSONObject;
 
 import ip.signature.com.signatureapps.R;
+import ip.signature.com.signatureapps.component.AlertDialogWithOneButton;
 import ip.signature.com.signatureapps.global.Global;
+import ip.signature.com.signatureapps.listener.AlertDialogListener;
 import ip.signature.com.signatureapps.listener.TransportListener;
 import ip.signature.com.signatureapps.model.MediaType;
 import ip.signature.com.signatureapps.transport.Transporter;
@@ -106,22 +109,35 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         if (view == btnLogin) {
-            try {
-                JSONObject body = new JSONObject();
-                body.put("nip", etNip.getText().toString());
-                body.put("password", etPassword.getText().toString());
+            AlertDialogWithOneButton dialog = new AlertDialogWithOneButton(this)
+                    .setListener(new AlertDialogListener.OneButton() {
+                        @Override
+                        public void onClickButton(Dialog dialog) {
+                            dialog.dismiss();
+                        }
+                    });
+            if (etNip.getText().toString().trim().equals("")) {
+                dialog.setContent("NIP tidak boleh kosong").show();
+            } else if (etPassword.getText().toString().trim().equals("")) {
+                dialog.setContent("Kata sandi tidak boleh kosong").show();
+            } else {
+                try {
+                    JSONObject body = new JSONObject();
+                    body.put("nip", etNip.getText().toString());
+                    body.put("password", etPassword.getText().toString());
 
-                new Transporter()
-                        .context(this)
-                        .listener(this)
-                        .url("https://monitoring-api.herokuapp.com")
-                        .route("/api/v1/user/login/" + etNip.getText().toString() + "/" + etPassword.getText().toString())
-                        .header("Authorization", "ApiAuth api_key=DMA128256512AI")
-                        .body(new BodyBuilder().setMediaType(MediaType.PLAIN.toString()))
-                        .gets()
-                        .execute();
-            } catch (Exception e) {
-                e.printStackTrace();
+                    new Transporter()
+                            .context(this)
+                            .listener(this)
+                            .url("https://monitoring-api.herokuapp.com")
+                            .route("/api/v1/user/login/" + etNip.getText().toString() + "/" + etPassword.getText().toString())
+                            .header("Authorization", "ApiAuth api_key=DMA128256512AI")
+                            .body(new BodyBuilder().setMediaType(MediaType.PLAIN.toString()))
+                            .gets()
+                            .execute();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         } else if (view == btnRegister) {
             Intent intent = new Intent(this, RegisterActivity.class);
@@ -199,7 +215,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Global.set(idUser, nip, name, step);
                 goToRegisterStep(step, idUser,name, nip);
             } else {
-                Toast.makeText(this, "Authorization Not Valid", Toast.LENGTH_SHORT).show();
+                new AlertDialogWithOneButton(this)
+                        .setContent("NIP dan kata sandi tidak cocok")
+                        .setListener(new AlertDialogListener.OneButton() {
+                            @Override
+                            public void onClickButton(Dialog dialog) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
             }
         } catch (Exception e) {
             e.printStackTrace();
