@@ -1,5 +1,6 @@
 package ip.signature.com.signatureapps.fragment;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,65 +8,62 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import ip.signature.com.signatureapps.R;
+import ip.signature.com.signatureapps.activity.AttendanceTrackActivity;
 import ip.signature.com.signatureapps.activity.BreakInActivity;
 import ip.signature.com.signatureapps.activity.BreakOutActivity;
 import ip.signature.com.signatureapps.activity.EndAttendanceActivity;
 import ip.signature.com.signatureapps.activity.AttendanceActivity;
+import ip.signature.com.signatureapps.component.AlertDialogWithOneButton;
+import ip.signature.com.signatureapps.global.Global;
+import ip.signature.com.signatureapps.listener.AlertDialogListener;
+import ip.signature.com.signatureapps.listener.ScheduleListener;
+import ip.signature.com.signatureapps.listener.TransportListener;
+import ip.signature.com.signatureapps.model.MediaType;
+import ip.signature.com.signatureapps.transport.Transporter;
+import ip.signature.com.signatureapps.transport.body.BodyBuilder;
+import ip.signature.com.signatureapps.util.GPSUtil;
+import ip.signature.com.signatureapps.util.ScheduleUtil;
+import ip.signature.com.signatureapps.util.TimeConverter;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * Use the {@link MenuFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class MenuFragment extends Fragment implements View.OnClickListener {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+public class MenuFragment extends Fragment implements View.OnClickListener, TransportListener, OnMapReadyCallback {
     private LinearLayout llAbsen;
     private LinearLayout llEndAbsen;
     private LinearLayout llBreak;
     private LinearLayout llEndBreak;
 
+    private MapView mapView;
+    private LinearLayout llDetail;
+    private JSONArray jsonArray;
+
     public MenuFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MenuFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MenuFragment newInstance(String param1, String param2) {
-        MenuFragment fragment = new MenuFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -78,6 +76,8 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
         llEndAbsen = (LinearLayout) view.findViewById(R.id.llEndAbsen);
         llBreak = (LinearLayout) view.findViewById(R.id.llBreak);
         llEndBreak = (LinearLayout) view.findViewById(R.id.llEndBreak);
+        mapView = (MapView) view.findViewById(R.id.mapView);
+        llDetail = (LinearLayout) view.findViewById(R.id.llDetail);
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
@@ -85,9 +85,42 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
             llEndAbsen.setOnClickListener(this);
             llBreak.setOnClickListener(this);
             llEndBreak.setOnClickListener(this);
+            llDetail.setOnClickListener(this);
         }
 
+        requestTracking();
+        new ScheduleUtil(new ScheduleListener() {
+            @Override
+            public boolean onRun(int requestCode) {
+                requestTracking();
+                return false;
+            }
+
+            @Override
+            public void onDone(int requestCode) {
+
+            }
+
+            @Override
+            public void onFail(int requestCode) {
+
+            }
+        }, 0).always(true).run(TimeConverter.convertToMinute(11));
+
         return view;
+    }
+
+    private void requestTracking() {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        new Transporter()
+                .context(getActivity())
+                .listener(this)
+                .url("https://monitoring-api.herokuapp.com")
+                .route("/api/v1/attendance/get/" + Global.id + "/" + new SimpleDateFormat("yyyy-MM-dd").format(timestamp))
+                .header("Authorization", "ApiAuth api_key=DMA128256512AI")
+                .body(new BodyBuilder().setMediaType(MediaType.PLAIN.toString()))
+                .gets()
+                .execute();
     }
 
     @Override
@@ -115,8 +148,66 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
         } else if (v == llEndBreak) {
             intent = new Intent(getActivity(), BreakInActivity.class);
             intent.putExtra("bundle", this.getArguments());
+        } else if (v == llDetail) {
+            intent = new Intent(getActivity(), AttendanceTrackActivity.class);
+            intent.putExtra("request", 1);
+            intent.putExtra("json", jsonArray.toString());
         }
 
         startActivity(intent);
+    }
+
+    @Override
+    public void onTransportDone(Object code, Object message, Object body, int id, Object... packet) {
+        try {
+            String result = String.valueOf(body);
+            JSONObject json = new JSONObject(result);
+
+            if (Integer.parseInt(json.get("code").toString()) == 200) {
+                String data = json.getString("result");
+                jsonArray = new JSONArray(data);
+            } else {
+                jsonArray = new JSONArray();
+            }
+
+            if (mapView != null) {
+                mapView.onCreate(null);
+                mapView.onResume();
+                mapView.getMapAsync(this);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onTransportFail(Object code, Object message, Object body, int id, Object... packet) {
+        Toast.makeText(getActivity(), message.toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        try {
+            MapsInitializer.initialize(getContext());
+            googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+            googleMap.setMyLocationEnabled(true);
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject object = jsonArray.getJSONObject(i);
+                LatLng position = new LatLng(object.getDouble("latitude"), object.getDouble("longitude"));
+
+                //add marker
+                googleMap.addMarker(new MarkerOptions().position(position).title(object.getString("date")));
+            }
+
+            // Pin to current location
+            CameraPosition camera = CameraPosition.builder()
+                    .target(new LatLng(GPSUtil.getLatitude(), GPSUtil.getLongitude()))
+                    .zoom(16).bearing(0)
+                    .tilt(45).build();
+            googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

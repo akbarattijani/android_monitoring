@@ -121,6 +121,13 @@ public class AttendanceMapsFragment extends Fragment implements View.OnClickList
             ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list);
             rvMenu.setAdapter(itemsAdapter);
 
+            // Pin to current location
+            CameraPosition camera = CameraPosition.builder()
+                    .target(new LatLng(GPSUtil.getLatitude(), GPSUtil.getLongitude()))
+                    .zoom(16).bearing(0)
+                    .tilt(45).build();
+            googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
+
             rvMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

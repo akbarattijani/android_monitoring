@@ -113,6 +113,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         } else if (position == 2) {
             Intent intent = new Intent(this, AttendanceTrackActivity.class);
+            intent.putExtra("request", 0);
             startActivity(intent);
         } else if (position == 3) {
 

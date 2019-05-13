@@ -18,6 +18,9 @@ public class AttendanceTrackActivity extends AppCompatActivity implements View.O
     private SearchAttendanceFragment searchAttendanceFragment = new SearchAttendanceFragment();
     private AttendanceMapsFragment attendanceMapsFragment = new AttendanceMapsFragment();
 
+    private final int RC_SEARCH = 0;
+    private final int RC_MAP = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +29,25 @@ public class AttendanceTrackActivity extends AppCompatActivity implements View.O
         back = (ImageView) findViewById(R.id.back);
         back.setOnClickListener(this);
 
-        getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right)
-                .add(R.id.container, searchAttendanceFragment)
-                .commit();
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            int request = bundle.getInt("request");
+            if (request == RC_SEARCH) {
+                getSupportFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right)
+                        .add(R.id.container, searchAttendanceFragment)
+                        .commit();
+            } else if (request == RC_MAP) {
+                Bundle extras = new Bundle();
+                extras.putString("json", bundle.getString("json"));
+                attendanceMapsFragment.setArguments(extras);
+
+                getSupportFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right)
+                        .add(R.id.container, attendanceMapsFragment)
+                        .commit();
+            }
+        }
     }
 
     @Override
