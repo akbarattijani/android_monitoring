@@ -19,6 +19,8 @@
         android:layout_marginBottom="25dp"/>
 
     <LinearLayout
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_below="@+id/info"
         android:layout_centerHorizontal="true"
         android:id="@+id/llSignaturePad"
