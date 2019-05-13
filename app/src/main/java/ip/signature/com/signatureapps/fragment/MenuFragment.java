@@ -1,6 +1,5 @@
 package ip.signature.com.signatureapps.fragment;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -27,7 +24,6 @@ import org.json.JSONObject;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 
 import ip.signature.com.signatureapps.R;
 import ip.signature.com.signatureapps.activity.AttendanceTrackActivity;
@@ -35,17 +31,13 @@ import ip.signature.com.signatureapps.activity.BreakInActivity;
 import ip.signature.com.signatureapps.activity.BreakOutActivity;
 import ip.signature.com.signatureapps.activity.EndAttendanceActivity;
 import ip.signature.com.signatureapps.activity.AttendanceActivity;
-import ip.signature.com.signatureapps.component.AlertDialogWithOneButton;
 import ip.signature.com.signatureapps.global.Global;
-import ip.signature.com.signatureapps.listener.AlertDialogListener;
-import ip.signature.com.signatureapps.listener.ScheduleListener;
+import ip.signature.com.signatureapps.global.GlobalMaps;
 import ip.signature.com.signatureapps.listener.TransportListener;
 import ip.signature.com.signatureapps.model.MediaType;
 import ip.signature.com.signatureapps.transport.Transporter;
 import ip.signature.com.signatureapps.transport.body.BodyBuilder;
 import ip.signature.com.signatureapps.util.GPSUtil;
-import ip.signature.com.signatureapps.util.ScheduleUtil;
-import ip.signature.com.signatureapps.util.TimeConverter;
 
 public class MenuFragment extends Fragment implements View.OnClickListener, TransportListener, OnMapReadyCallback {
     private LinearLayout llAbsen;
@@ -88,29 +80,8 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Tran
             llDetail.setOnClickListener(this);
         }
 
-        requestTracking();
-        new ScheduleUtil(new ScheduleListener() {
-            @Override
-            public boolean onRun(int requestCode) {
-                requestTracking();
-                return false;
-            }
+        GlobalMaps.setMenuFragment(this);
 
-            @Override
-            public void onDone(int requestCode) {
-
-            }
-
-            @Override
-            public void onFail(int requestCode) {
-
-            }
-        }, 0).always(true).run(TimeConverter.convertToMinute(11));
-
-        return view;
-    }
-
-    private void requestTracking() {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         new Transporter()
                 .context(getActivity())
@@ -120,6 +91,22 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Tran
                 .header("Authorization", "ApiAuth api_key=DMA128256512AI")
                 .body(new BodyBuilder().setMediaType(MediaType.PLAIN.toString()))
                 .gets()
+                .execute();
+
+        return view;
+    }
+
+    public void updateMaps() {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        new Transporter()
+                .context(getActivity())
+                .listener(this)
+                .url("https://monitoring-api.herokuapp.com")
+                .route("/api/v1/attendance/get/" + Global.id + "/" + new SimpleDateFormat("yyyy-MM-dd").format(timestamp))
+                .header("Authorization", "ApiAuth api_key=DMA128256512AI")
+                .body(new BodyBuilder().setMediaType(MediaType.PLAIN.toString()))
+                .gets()
+                .silent(true)
                 .execute();
     }
 

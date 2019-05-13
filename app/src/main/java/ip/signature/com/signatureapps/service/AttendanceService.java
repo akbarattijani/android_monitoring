@@ -10,13 +10,16 @@ import android.os.Build;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 import ip.signature.com.signatureapps.R;
+import ip.signature.com.signatureapps.fragment.MenuFragment;
 import ip.signature.com.signatureapps.global.Global;
+import ip.signature.com.signatureapps.global.GlobalMaps;
 import ip.signature.com.signatureapps.listener.ScheduleListener;
 import ip.signature.com.signatureapps.listener.TransportListener;
 import ip.signature.com.signatureapps.transport.Body;
@@ -50,7 +53,7 @@ public class AttendanceService extends Service implements ScheduleListener {
         }
 
         scheduleUtil = new ScheduleUtil(this, 0).always(true);
-        scheduleUtil.run(TimeConverter.convertToMinute(10));
+        scheduleUtil.run(TimeConverter.convertToMinute(1));
     }
 
     @Override
@@ -99,6 +102,8 @@ public class AttendanceService extends Service implements ScheduleListener {
                                 if (Integer.parseInt(json.get("code").toString()) == 200) {
                                     String classification = json.getString("result");
                                     isSuccess = classification.equals("true");
+
+                                    GlobalMaps.getMenuFragment().updateMaps();
                                 }
                             } catch (Exception e) {
                                 e.printStackTrace();

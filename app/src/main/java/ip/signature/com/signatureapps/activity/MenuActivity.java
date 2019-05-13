@@ -19,6 +19,7 @@ import ip.signature.com.signatureapps.component.AlertDialogWithTwoButton;
 import ip.signature.com.signatureapps.fragment.MenuFragment;
 import ip.signature.com.signatureapps.global.Global;
 import ip.signature.com.signatureapps.listener.AlertDialogListener;
+import ip.signature.com.signatureapps.service.AttendanceService;
 
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener, NavigationMenuAdapter.OnMenuClickListener {
     private DrawerLayout myDrawerLayout;
@@ -82,10 +83,15 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
                         @Override
                         public void onClickButtonRight(Dialog dialog) {
+                            Intent service = new Intent(getApplicationContext(), AttendanceService.class);
+                            service.addCategory("ATTENDANCE");
+                            stopService(service);
+
                             Intent intent = new Intent(MenuActivity.this, LoginActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
 
+                            AttendanceService.stop();
                             MenuActivity.this.finish();
                         }
                     });
@@ -118,10 +124,15 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         } else if (position == 3) {
 
         } else if (position == 4) {
+            Intent service = new Intent(getApplicationContext(), AttendanceService.class);
+            service.addCategory("ATTENDANCE");
+            stopService(service);
+
             Intent intent = new Intent(this, LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
 
+            AttendanceService.stop();
             this.finish();
         }
     }
