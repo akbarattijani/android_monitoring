@@ -1,6 +1,11 @@
 package ip.signature.com.signatureapps.global;
 
 public class Global {
+    public static final int ATTENDANCE = 1;
+    public static final int BREAK_OUT = 2;
+    public static final int BREAK_IN = 3;
+    public static final int END_ATTENDANCE = 4;
+
     public static int id;
     public static String nip;
     public static String name;

@@ -15,6 +15,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -184,7 +185,33 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Tran
                 LatLng position = new LatLng(object.getDouble("latitude"), object.getDouble("longitude"));
 
                 //add marker
-                googleMap.addMarker(new MarkerOptions().position(position).title(object.getString("date")));
+                int custom = object.getInt("custom");
+                if (custom == Global.ATTENDANCE) {
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(position)
+                            .title(object.getString("date")))
+                            .setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                } else if (custom == Global.BREAK_OUT) {
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(position)
+                            .title(object.getString("date")))
+                            .setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+                } else if (custom == Global.BREAK_IN) {
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(position)
+                            .title(object.getString("date")))
+                            .setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                } else if (custom == Global.END_ATTENDANCE) {
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(position)
+                            .title(object.getString("date")))
+                            .setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                } else {
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(position)
+                            .title(object.getString("date")))
+                            .setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                }
             }
 
             // Pin to current location

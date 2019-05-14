@@ -45,6 +45,138 @@
                         android:layout_gravity="end|right|top">
                     </FrameLayout>
                 </FrameLayout>
+
+                <HorizontalScrollView
+                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/flBurgeMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_centerVertical="true"
+                            android:id="@+id/llAbsen"
+                            android:layout_weight="0.5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/attendance_icon"/>
+
+                            <TextView
+                                android:gravity="center_vertical"
+                                android:layout_weight="0.8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="Absen"
+                                android:textSize="13sp"
+                                android:textColor="@color/colorBlack"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_centerVertical="true"
+                            android:id="@+id/llBreakout"
+                            android:layout_toRightOf="@+id/llAbsen"
+                            android:layout_weight="0.5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/break_out_icon"/>
+
+                            <TextView
+                                android:gravity="center_vertical"
+                                android:layout_weight="0.8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="Istirahat"
+                                android:textSize="13sp"
+                                android:textColor="@color/colorBlack"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_centerVertical="true"
+                            android:id="@+id/Breakin"
+                            android:layout_toRightOf="@+id/llBreakout"
+                            android:layout_weight="0.5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/break_in_icon"/>
+
+                            <TextView
+                                android:gravity="center_vertical"
+                                android:layout_weight="0.8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="Kembali"
+                                android:textSize="13sp"
+                                android:textColor="@color/colorBlack"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/end"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/Breakin"
+                            android:layout_weight="0.5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/end_attendance_icon"/>
+
+                            <TextView
+                                android:gravity="center_vertical"
+                                android:layout_weight="0.8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="Pulang"
+                                android:textSize="13sp"
+                                android:textColor="@color/colorBlack"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/end"
+                            android:layout_weight="0.5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/track_icon"/>
+
+                            <TextView
+                                android:gravity="center_vertical"
+                                android:layout_weight="0.8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="Track"
+                                android:textSize="13sp"
+                                android:textColor="@color/colorBlack"/>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </HorizontalScrollView>
             </RelativeLayout>
         </LinearLayout>
 
