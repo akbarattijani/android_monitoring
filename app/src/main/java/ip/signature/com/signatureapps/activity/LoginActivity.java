@@ -130,7 +130,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             .context(this)
                             .listener(this)
                             .url("https://monitoring-api.herokuapp.com")
-                            .route("/api/v1/user/login/" + etNip.getText().toString() + "/" + etPassword.getText().toString())
+                            .route("/api/v1/user/login/" + etNip.getText().toString() + "/" + etPassword.getText().toString() +"/0")
                             .header("Authorization", "ApiAuth api_key=DMA128256512AI")
                             .body(new BodyBuilder().setMediaType(MediaType.PLAIN.toString()))
                             .gets()
