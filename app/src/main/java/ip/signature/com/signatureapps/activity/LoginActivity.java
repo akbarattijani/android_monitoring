@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } else {
             GPSUtil.requestUpdates(this, 5000, 10);
             GPSUtil.forceGps(this);
+            GPSUtil.mock(true);
         }
     }
 

@@ -154,9 +154,6 @@ public class Transporter {
             urlConnection.addRequestProperty(entry.getKey(), entry.getValue());
         }
 
-        // Print out url and route
-        Log.d("URL Request", urlToRequest.toString());
-
         //Send request
         if (this.method.equals("POST") || this.method.equals("PUT")) {
 //            urlConnection.setDoOutput(true);
@@ -221,6 +218,19 @@ public class Transporter {
         String code = String.valueOf(urlConnection.getResponseCode());
         String message = urlConnection.getResponseMessage();
         urlConnection.disconnect();
+
+        // Print out url and route
+        Log.d("==============", "===========================================================================================");
+        Log.d("URL Request (" + this.method + ")", urlToRequest.toString());
+        for (Map.Entry<String, String> entry : headers.entrySet()) {
+            Log.d("Header", entry.getKey() + " => " + entry.getValue());
+        }
+        Log.d("Request Body", String.valueOf(body.getBody()));
+        Log.d("Response Code", code);
+        Log.d("Response Message", message);
+        Log.d("Response Body", response.toString());
+        Log.d("==============", "===========================================================================================");
+
         return new String[] {code, message, response.toString()};
     }
 }
