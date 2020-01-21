@@ -85,7 +85,7 @@ public class AttendanceService extends Service implements ScheduleListener {
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
             JSONObject object = new JSONObject();
-            object.put("id", Global.id);
+            object.put("id_user", Global.id);
             object.put("longitude", GPSUtil.getLongitude());
             object.put("latitude", GPSUtil.getLatitude());
             object.put("date", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(timestamp));

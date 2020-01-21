@@ -96,7 +96,7 @@ public class RegisterStep3 extends AppCompatActivity implements View.OnClickList
 
                         int id = bundle.getInt("id", 0);
                         JSONObject object = new JSONObject();
-                        object.put("id", id);
+                        object.put("id_user", id);
                         object.put("biner", new ConvertArray().twoDimensionToOneDimension(signatureNormalization).asString());
 
                         dialog.dismiss();

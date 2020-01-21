@@ -52,8 +52,8 @@ public class BreakInActivity extends AppCompatActivity implements View.OnClickLi
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
                 JSONObject params = new JSONObject();
-                params.put("id", Global.id);
-                params.put("break_date", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(timestamp));
+                params.put("id_user", Global.id);
+                params.put("break_end_date", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(timestamp));
                 params.put("longitude", GPSUtil.getLongitude());
                 params.put("latitude", GPSUtil.getLatitude());
 
